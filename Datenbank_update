@@ -1,0 +1,9 @@
+#!/bin/bash
+while true
+do
+	#echo cat /sys/bus/w1/devices/28-00000a920f46/w1_slave |grep 't=' |awk '{ print $10}'|cut -c 3-7 |sed 's/\(..\)\(..*\)/\1.\2/'
+	x=`cat /sys/bus/w1/devices/28-00000a920f46/w1_slave |grep 't=' |awk '{ print $10}'|cut -c 3-7 |sed 's/\(..\)\(..*\)/\1.\2/'`
+	echo $x
+	sleep 5
+        sudo rrdupdate /var/www/html/temperatur2.rrd N:$x
+done
